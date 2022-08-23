@@ -1,0 +1,11 @@
+# This is a basic workflow to test unbuntu version
+
+name: testOS
+
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "The runner of ubuntu-latest uses $RUNNER_OS"
