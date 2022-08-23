@@ -19,7 +19,6 @@ jobs:
     steps:
       #Setup CVMFS firstly
       - run: sudo apt-get install build-essential
-      - run: rm -f /etc/apt/sources.list
       - run: echo "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse" | sudo tee /etc/apt/sources.list
       - run: echo "deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
       - run: echo "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
