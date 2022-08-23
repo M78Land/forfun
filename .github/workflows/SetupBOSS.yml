@@ -19,7 +19,29 @@ jobs:
     steps:
       #Setup CVMFS firstly
       - run: sudo apt-get install build-essential
-      - run: sudo apt-get install yum
+      - run: rm -f /etc/apt/sources.list
+      - run: echo "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse" | sudo tee /etc/apt/sources.list
+      - run: echo "deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
+      - run: echo "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
+      - run: echo "deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
+      - run: echo "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
+      - run: echo "deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
+      - run: echo "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
+      - run: echo "deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
+      - run: echo "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
+      - run: echo "deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
+      - run: echo "deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
+      - run: echo "deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
+      - run: echo "deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
+      - run: echo "deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
+      - run: echo "deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
+      - run: echo "deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
+      - run: echo "deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
+      - run: echo "deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
+      - run: echo "deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
+      - run: echo "deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list
+      - run: sudo apt-get update
+      - run: sudo apt install yum
       - run: sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm 
       - run: sudo yum install -y cvmfs 
       - run: sudo mkdir /etc/cvmfs/keys/ihep.ac.cn
