@@ -1,0 +1,48 @@
+#Setup BES3 Offline Software System(BOSS)
+name: SetupBOSS
+
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  setupBOSS:
+    runs-on: ubuntu-latest
+
+    # Setup CVMFS firstly. Then mount the BOSS to /cvmfs. Finally, set the environment for boss
+    steps:
+      #Setup CVMFS firstly
+      - run: sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm 
+      - run: sudo yum install -y cvmfs 
+      - run: sudo mkdir /etc/cvmfs/keys/ihep.ac.cn
+      - run: sudo curl -o /etc/cvmfs/keys/ihep.ac.cn/ihep.ac.cn.pub http://cvmfs-stratum-one.ihep.ac.cn/cvmfs/software/client_configure/ihep.ac.cn/ihep.ac.cn.pub
+      - run: sudo curl -o /etc/cvmfs/domain.d/ihep.ac.cn.conf http://cvmfs-stratum-one.ihep.ac.cn/cvmfs/software/client_configure/ihep.ac.cn.conf
+      - run: echo "CVMFS_REPOSITORIES='sft.cern.ch,bes3.ihep.ac.cn,container.ihep.ac.cn'" | sudo tee    /etc/cvmfs/default.local
+      - run: echo "CVMFS_HTTP_PROXY=DIRECT"                                                 | sudo tee -a /etc/cvmfs/default.local
+      - run: cat /etc/cvmfs/default.local
+      - run: sudo mkdir -p /cvmfs/sft.cern.ch
+      - run: sudo mkdir -p /cvmfs/bes3.ihep.ac.cn
+      - run: sudo mkdir -p /cvmfs/container.ihep.ac.cn
+      
+     #Mount the BOSS to /cvmfs
+      - run: mount -t cvmfs sft.cern.ch /cvmfs/sft.cern.ch
+      - run: mount -t cvmfs container.ihep.ac.cn /cvmfs/container.ihep.ac.cn
+      - run: mount -t cvmfs bes3.ihep.ac.cn /cvmfs/bes3.ihep.ac.cn
+      
+    #Set the environment for boss
+      - run: cd ~&&mkdir cmthome
+      - run: cd cmthome
+      - run: cp /cvmfs/bes3.ihep.ac.cn/bes3sw/cmthome/cmthome-7.0.8/* ~/cmthome/
+      - run: source setupCMT.sh
+      - run: cmt config&&source setup.sh
+      
+    #Run Helloworld
+      - run: cd /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/TestRelease/TestRelease-00-00-95/cmt/
+      - run: source setup.sh
+      - run: cd ../run&&boss.exe HelloWorldOptions.txt
