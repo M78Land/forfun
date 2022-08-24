@@ -61,7 +61,7 @@ jobs:
       - run: sudo mkdir -p /cvmfs/container.ihep.ac.cn
       
      #Mount the BOSS to /cvmfs
-      - run: sudo mount -t cvmfs sft.cern.ch /cvmfs/sft.cern.ch
+      #- run: sudo mount -t cvmfs sft.cern.ch /cvmfs/sft.cern.ch #ubuntu下自动挂载
       - run: sudo mount -t cvmfs container.ihep.ac.cn /cvmfs/container.ihep.ac.cn
       - run: sudo mount -t cvmfs bes3.ihep.ac.cn /cvmfs/bes3.ihep.ac.cn
       
