@@ -25,7 +25,7 @@ jobs:
       - run: sudo docker container exec boss mount -t cvmfs bes3.ihep.ac.cn /cvmfs/bes3.ihep.ac.cn
       
     #Set the environment for boss
-      - run: docker container exec boss cd /&&mkdir cmthome
+      - run: docker container exec boss cd / && mkdir cmthome
       - run: docker container exec boss cd cmthome
       - run: docker container exec boss cp /cvmfs/bes3.ihep.ac.cn/bes3sw/cmthome/cmthome-7.0.8/* ~/cmthome/
       - run: docker container exec boss source setupCMT.sh
