@@ -20,18 +20,18 @@ jobs:
       - run: docker image pull barbohrben/boss:c
       - run: sudo docker container run -d --name boss --privileged barbohrben/boss:c sleep 1d
     #Mount the BOSS to /cvmfs
-      - run: sudo docker container exec -w -privileged boss sh -c 'mount -t cvmfs sft.cern.ch /cvmfs/sft.cern.ch'
-      - run: sudo docker container exec -w -privileged boss mount -t cvmfs container.ihep.ac.cn /cvmfs/container.ihep.ac.cn 
-      - run: sudo docker container exec -w -privileged boss mount -t cvmfs bes3.ihep.ac.cn /cvmfs/bes3.ihep.ac.cn
+      - run: sudo docker container exec boss mount -t cvmfs sft.cern.ch /cvmfs/sft.cern.ch
+      - run: sudo docker container exec boss mount -t cvmfs container.ihep.ac.cn /cvmfs/container.ihep.ac.cn 
+      - run: sudo docker container exec boss mount -t cvmfs bes3.ihep.ac.cn /cvmfs/bes3.ihep.ac.cn
       
     #Set the environment for boss
-      - run: docker container exec -w -privileged boss cd ~&&mkdir cmthome
-      - run: docker container exec -w -privileged boss cd cmthome
-      - run: docker container exec -w -privileged boss cp /cvmfs/bes3.ihep.ac.cn/bes3sw/cmthome/cmthome-7.0.8/* ~/cmthome/
-      - run: docker container exec -w -privileged boss source setupCMT.sh
-      - run: docker container exec -w -privileged boss cmt config&&source setup.sh
+      - run: docker container exec boss cd ~&&mkdir cmthome
+      - run: docker container exec boss cd cmthome
+      - run: docker container exec boss cp /cvmfs/bes3.ihep.ac.cn/bes3sw/cmthome/cmthome-7.0.8/* ~/cmthome/
+      - run: docker container exec boss source setupCMT.sh
+      - run: docker container exec boss cmt config&&source setup.sh
       
     #Run Helloworld
-      - run: docker container exec -w -privileged boss cd /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/TestRelease/TestRelease-00-00-95/cmt/
-      - run: docker container exec -w -privileged boss source setup.sh
-      - run: docker container exec -w -privileged boss cd ../run&&boss.exe HelloWorldOptions.txt
+      - run: docker container exe boss cd /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/TestRelease/TestRelease-00-00-95/cmt/
+      - run: docker container exec boss source setup.sh
+      - run: docker container exec boss cd ../run&&boss.exe HelloWorldOptions.txt
