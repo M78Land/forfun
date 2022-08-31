@@ -20,7 +20,7 @@ jobs:
       - run: docker image pull barbohrben/boss:c
       - run: sudo docker container run -d --name boss --privileged barbohrben/boss:c sleep 1d
     #Mount the BOSS to /cvmfs
-      - run: sudo docker container exec -w -privileged boss sh -c 'mount -t cvmfs sft.cern.ch /cvmfs/sft.cern.ch 
+      - run: sudo docker container exec -w -privileged boss sh -c 'mount -t cvmfs sft.cern.ch /cvmfs/sft.cern.ch'
       - run: sudo docker container exec -w -privileged boss mount -t cvmfs container.ihep.ac.cn /cvmfs/container.ihep.ac.cn 
       - run: sudo docker container exec -w -privileged boss mount -t cvmfs bes3.ihep.ac.cn /cvmfs/bes3.ihep.ac.cn
       
