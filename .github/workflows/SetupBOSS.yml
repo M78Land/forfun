@@ -18,8 +18,7 @@ jobs:
     # run docker of centos containing cvmfs. Then mount the BOSS to /cvmfs. Finally, set the environment for boss
     steps:
       - run: docker image pull barbohrben/boss:c
-      - run: sudo docker container run -d --name boss --privileged barbohrben/boss:c
-      - run: sudo docker container exec -w -privileged boss 
+      - run: sudo docker container run -d --name boss --privileged barbohrben/boss:c 
     #Mount the BOSS to /cvmfs
       - run: sudo docker container exec -w -privileged boss mount -t cvmfs sft.cern.ch /cvmfs/sft.cern.ch 
       - run: sudo docker container exec -w -privileged boss mount -t cvmfs container.ihep.ac.cn /cvmfs/container.ihep.ac.cn 
