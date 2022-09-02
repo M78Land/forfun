@@ -36,6 +36,6 @@ jobs:
     #Run Helloworld
       - run: docker container exec boss /bin/bash -c 'echo "cd /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/TestRelease/TestRelease-00-00-95/cmt/"  | sudo tee -a /home/setup708.sh' 
       - run: docker container exec boss /bin/bash -c 'echo "source setup.sh"  | sudo tee -a /home/setup708.sh'
-      - run: docker container exec boss /bin/bash -c 'echo "cd ../run&&boss.exe HelloWorldOptions.txt"  | sudo tee -a /home/setup708.sh'
+      - run: docker container exec boss /bin/bash -c 'echo "cd ../run&&boss.exe jobOptions_sim.txt"  | sudo tee -a /home/setup708.sh'
 
       - run: docker container exec boss /bin/bash -c 'source /home/setup708.sh'
