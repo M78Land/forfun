@@ -17,7 +17,7 @@ jobs:
 
     # run docker of centos containing cvmfs. Then mount the BOSS to /cvmfs. Finally, set the environment for boss
     steps:
-      - run: docker image pull barbohrben/boss:c
+      - run: docker image pull barbohrben/boss:c_lib
       - run: docker container run -d --name boss --privileged barbohrben/boss:c sleep 1d
     #Mount the BOSS to /cvmfs
       - run: docker container exec boss mount -t cvmfs sft.cern.ch /cvmfs/sft.cern.ch
@@ -33,7 +33,7 @@ jobs:
       - run: docker container exec boss /bin/bash -c 'echo "source setupCMT.sh"  | sudo tee -a /home/setup708.sh'
       - run: docker container exec boss /bin/bash -c 'echo "cmt config&&source setup.sh"  | sudo tee -a /home/setup708.sh'
       
-    #Run Helloworld
+    #Run
       - run: docker container exec boss /bin/bash -c 'echo "cd /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/TestRelease/TestRelease-00-00-95/cmt/"  | sudo tee -a /home/setup708.sh' 
       - run: docker container exec boss /bin/bash -c 'echo "source setup.sh"  | sudo tee -a /home/setup708.sh'
       - run: docker container exec boss /bin/bash -c 'echo "cd ../run&&boss.exe jobOptions_sim.txt"  | sudo tee -a /home/setup708.sh'
