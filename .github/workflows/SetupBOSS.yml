@@ -26,7 +26,7 @@ jobs:
       
     #Set the environment for boss
       - run: docker container exec boss /bin/bash -c 'echo "cd /home" | sudo tee  /home/setup708.sh'
-      - run: docker container exec boss /bin/bash -c 'echo "mkdir cmthome"  | sudo tee -a /home/setup708.sh'
+      - run: docker container exec boss /bin/bash -c 'echo "mkdir cmthome&&mkdir TestRelease"  | sudo tee -a /home/setup708.sh'
       - run: docker container exec boss /bin/bash -c 'echo "cd cmthome"  | sudo tee -a /home/setup708.sh'
      # - run: docker container exec boss cd /cvmfs/bes3.ihep.ac.cn/bes3sw/cmthome/cmthome-7.0.8'
       - run: docker container exec boss /bin/bash -c 'echo "cp /cvmfs/bes3.ihep.ac.cn/bes3sw/cmthome/cmthome-7.0.8/* /home/cmthome/"  | sudo tee -a /home/setup708.sh'
@@ -34,7 +34,8 @@ jobs:
       - run: docker container exec boss /bin/bash -c 'echo "cmt config&&source setup.sh"  | sudo tee -a /home/setup708.sh'
       
     #Run
-      - run: docker container exec boss /bin/bash -c 'echo "cd /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/TestRelease/TestRelease-00-00-95/cmt/"  | sudo tee -a /home/setup708.sh' 
+      - run: docker container exec boss /bin/bash -c 'echo "cp -r /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/TestRelease/TestRelease-00-00-95 /home/TestRelease"  | sudo tee -a /home/setup708.sh'
+      - run: docker container exec boss /bin/bash -c 'echo "cd /home/TestRelease/cmt"  | sudo tee -a /home/setup708.sh'
       - run: docker container exec boss /bin/bash -c 'echo "source setup.sh"  | sudo tee -a /home/setup708.sh'
       - run: docker container exec boss /bin/bash -c 'echo "cd ../run&&boss.exe jobOptions_sim.txt"  | sudo tee -a /home/setup708.sh'
 
