@@ -37,6 +37,6 @@ jobs:
       - run: docker container exec boss /bin/bash -c 'echo "cp -r /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/TestRelease/TestRelease-00-00-95/* /home/TestRelease"  | sudo tee -a /home/setup708.sh'
       - run: docker container exec boss /bin/bash -c 'echo "cd /home/TestRelease/cmt"  | sudo tee -a /home/setup708.sh'
       - run: docker container exec boss /bin/bash -c 'echo "source setup.sh"  | sudo tee -a /home/setup708.sh'
-      - run: docker container exec boss /bin/bash -c 'echo "cd ../run&&boss.exe jobOptions_sim.txt"  | sudo tee -a /home/setup708.sh'
+      - run: docker container exec boss /bin/bash -c 'echo "cd ../run&&boss.exe jobOptions_ana_pipijpsi.txt"  | sudo tee -a /home/setup708.sh'
 
       - run: docker container exec boss /bin/bash -c 'source /home/setup708.sh'
