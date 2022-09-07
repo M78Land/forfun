@@ -25,13 +25,12 @@ jobs:
       - run: docker container exec boss mount -t cvmfs bes3.ihep.ac.cn /cvmfs/bes3.ihep.ac.cn
       
     #Set the environment for boss
-      - run: docker container exec boss /bin/bash -c 'echo "cd /home" | sudo tee  /home/setup708.sh'
+      - run: docker container exec boss /bin/bash -c 'echo "cd /home" | sudo tee /home/setup708.sh'
       - run: docker container exec boss /bin/bash -c 'echo "mkdir cmthome&&mkdir workarea" | sudo tee -a /home/setup708.sh'
       - run: docker container exec boss /bin/bash -c 'echo "cd cmthome" | sudo tee -a /home/setup708.sh'
       - run: docker container exec boss /bin/bash -c 'echo "cp /cvmfs/bes3.ihep.ac.cn/bes3sw/cmthome/cmthome-7.0.8/* /home/cmthome/" | sudo tee -a /home/setup708.sh'
-      - run: docker container exec boss /bin/bash -c 'echo "ls" | sudo tee -a /home/setup708.sh'
       - run: docker container exec boss /bin/bash -c "echo \"sed -i '44c macro WorkArea \\\"/home/workarea\\\"' requirements\" | sudo tee -a /home/setup708.sh"
-      - run: docker container exec boss /bin/bash -c "echo \"sed -i '45,46c path_remove CMTPATH  \\\"\\\${WorkArea}\\\"\npath_prepend CMTPATH \\\"\\\${WorkArea}\\\"' requirements\"| sudo tee /home/setup708.sh"
+      - run: docker container exec boss /bin/bash -c "echo \"sed -i '45,46c path_remove CMTPATH  \\\"\\\${WorkArea}\\\"\npath_prepend CMTPATH \\\"\\\${WorkArea}\\\"' requirements\"| sudo tee -a /home/setup708.sh"
       - run: docker container exec boss /bin/bash -c 'echo "source setupCMT.sh" | sudo tee -a /home/setup708.sh'
       - run: docker container exec boss /bin/bash -c 'echo "cmt config&&source setup.sh" | sudo tee -a /home/setup708.sh'
       
