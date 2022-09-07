@@ -19,5 +19,4 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - run: bash ./test708.sh
-        working-directory: ./
+      - run: source test708.sh
