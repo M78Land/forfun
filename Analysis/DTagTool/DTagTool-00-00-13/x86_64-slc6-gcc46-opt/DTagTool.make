@@ -1,0 +1,252 @@
+#-- start of make_header -----------------
+
+#====================================
+#  Library DTagTool
+#
+#   Generated Thu Nov 11 08:11:54 2021  by bes3pub
+#
+#====================================
+
+include ${CMTROOT}/src/Makefile.core
+
+ifdef tag
+CMTEXTRATAGS = $(tag)
+else
+tag       = $(CMTCONFIG)
+endif
+
+cmt_DTagTool_has_no_target_tag = 1
+
+#--------------------------------------------------------
+
+ifdef cmt_DTagTool_has_target_tag
+
+tags      = $(tag),$(CMTEXTRATAGS),target_DTagTool
+
+DTagTool_tag = $(tag)
+
+#cmt_local_tagfile_DTagTool = $(DTagTool_tag)_DTagTool.make
+cmt_local_tagfile_DTagTool = $(bin)$(DTagTool_tag)_DTagTool.make
+
+else
+
+tags      = $(tag),$(CMTEXTRATAGS)
+
+DTagTool_tag = $(tag)
+
+#cmt_local_tagfile_DTagTool = $(DTagTool_tag).make
+cmt_local_tagfile_DTagTool = $(bin)$(DTagTool_tag).make
+
+endif
+
+include $(cmt_local_tagfile_DTagTool)
+#-include $(cmt_local_tagfile_DTagTool)
+
+ifdef cmt_DTagTool_has_target_tag
+
+cmt_final_setup_DTagTool = $(bin)setup_DTagTool.make
+cmt_dependencies_in_DTagTool = $(bin)dependencies_DTagTool.in
+#cmt_final_setup_DTagTool = $(bin)DTagTool_DTagToolsetup.make
+cmt_local_DTagTool_makefile = $(bin)DTagTool.make
+
+else
+
+cmt_final_setup_DTagTool = $(bin)setup.make
+cmt_dependencies_in_DTagTool = $(bin)dependencies.in
+#cmt_final_setup_DTagTool = $(bin)DTagToolsetup.make
+cmt_local_DTagTool_makefile = $(bin)DTagTool.make
+
+endif
+
+#cmt_final_setup = $(bin)setup.make
+#cmt_final_setup = $(bin)DTagToolsetup.make
+
+#DTagTool :: ;
+
+dirs ::
+	@if test ! -r requirements ; then echo "No requirements file" ; fi; \
+	  if test ! -d $(bin) ; then $(mkdir) -p $(bin) ; fi
+
+javadirs ::
+	@if test ! -d $(javabin) ; then $(mkdir) -p $(javabin) ; fi
+
+srcdirs ::
+	@if test ! -d $(src) ; then $(mkdir) -p $(src) ; fi
+
+help ::
+	$(echo) 'DTagTool'
+
+binobj = 
+ifdef STRUCTURED_OUTPUT
+binobj = DTagTool/
+#DTagTool::
+#	@if test ! -d $(bin)$(binobj) ; then $(mkdir) -p $(bin)$(binobj) ; fi
+#	$(echo) "STRUCTURED_OUTPUT="$(bin)$(binobj)
+endif
+
+${CMTROOT}/src/Makefile.core : ;
+ifdef use_requirements
+$(use_requirements) : ;
+endif
+
+#-- end of make_header ------------------
+#-- start of libary_header ---------------
+
+DTagToollibname   = $(bin)$(library_prefix)DTagTool$(library_suffix)
+DTagToollib       = $(DTagToollibname).a
+DTagToolstamp     = $(bin)DTagTool.stamp
+DTagToolshstamp   = $(bin)DTagTool.shstamp
+
+DTagTool :: dirs  DTagToolLIB
+	$(echo) "DTagTool ok"
+
+#-- end of libary_header ----------------
+
+DTagToolLIB :: $(DTagToollib) $(DTagToolshstamp)
+	@/bin/echo "------> DTagTool : library ok"
+
+$(DTagToollib) :: $(bin)DTagTool.o
+	$(lib_echo) library
+	$(lib_silent) cd $(bin); \
+	  $(ar) $(DTagToollib) $?
+	$(lib_silent) $(ranlib) $(DTagToollib)
+	$(lib_silent) cat /dev/null >$(DTagToolstamp)
+
+#------------------------------------------------------------------
+#  Future improvement? to empty the object files after
+#  storing in the library
+#
+##	  for f in $?; do \
+##	    rm $${f}; touch $${f}; \
+##	  done
+#------------------------------------------------------------------
+
+$(DTagToollibname).$(shlibsuffix) :: $(DTagToollib) $(DTagToolstamps)
+	$(lib_silent) cd $(bin); QUIET=$(QUIET); $(make_shlib) "$(tags)" DTagTool $(DTagTool_shlibflags)
+
+$(DTagToolshstamp) :: $(DTagToollibname).$(shlibsuffix)
+	@if test -f $(DTagToollibname).$(shlibsuffix) ; then cat /dev/null >$(DTagToolshstamp) ; fi
+
+DTagToolclean ::
+	$(cleanup_echo) objects
+	$(cleanup_silent) cd $(bin); /bin/rm -f $(bin)DTagTool.o
+
+#-----------------------------------------------------------------
+#
+#  New section for automatic installation
+#
+#-----------------------------------------------------------------
+
+ifeq ($(INSTALLAREA),)
+installarea = $(CMTINSTALLAREA)
+else
+ifeq ($(findstring `,$(INSTALLAREA)),`)
+installarea = $(shell $(subst `,, $(INSTALLAREA)))
+else
+installarea = $(INSTALLAREA)
+endif
+endif
+
+install_dir = ${installarea}/${CMTCONFIG}/lib
+DTagToolinstallname = $(library_prefix)DTagTool$(library_suffix).$(shlibsuffix)
+
+DTagTool :: DTagToolinstall
+
+install :: DTagToolinstall
+
+DTagToolinstall :: $(install_dir)/$(DTagToolinstallname)
+	@if test ! "${installarea}" = ""; then\
+	  echo "installation done"; \
+	fi
+
+$(install_dir)/$(DTagToolinstallname) :: $(bin)$(DTagToolinstallname)
+	@if test ! "${installarea}" = ""; then \
+	  cd $(bin); \
+	  if test ! "$(install_dir)" = ""; then \
+	    if test ! -d "$(install_dir)"; then \
+	      mkdir -p $(install_dir); \
+	    fi ; \
+	    if test -d "$(install_dir)"; then \
+	      echo "Installing library $(DTagToolinstallname) into $(install_dir)"; \
+	      if test -e $(install_dir)/$(DTagToolinstallname); then \
+	        $(cmt_uninstall_area_command) $(install_dir)/$(DTagToolinstallname); \
+	        $(cmt_uninstall_area_command) $(install_dir)/$(DTagToolinstallname).cmtref; \
+	      fi; \
+	      $(cmt_install_area_command) `pwd`/$(DTagToolinstallname) $(install_dir)/$(DTagToolinstallname); \
+	      echo `pwd`/$(DTagToolinstallname) >$(install_dir)/$(DTagToolinstallname).cmtref; \
+	    fi \
+          else \
+	    echo "Cannot install library $(DTagToolinstallname), no installation directory specified"; \
+	  fi; \
+	fi
+
+DTagToolclean :: DTagTooluninstall
+
+uninstall :: DTagTooluninstall
+
+DTagTooluninstall ::
+	@if test ! "${installarea}" = ""; then \
+	  cd $(bin); \
+	  if test ! "$(install_dir)" = ""; then \
+	    if test -d "$(install_dir)"; then \
+	      echo "Removing installed library $(DTagToolinstallname) from $(install_dir)"; \
+	      $(cmt_uninstall_area_command) $(install_dir)/$(DTagToolinstallname); \
+	      $(cmt_uninstall_area_command) $(install_dir)/$(DTagToolinstallname).cmtref; \
+	    fi \
+          else \
+	    echo "Cannot uninstall library $(DTagToolinstallname), no installation directory specified"; \
+	  fi; \
+	fi
+
+
+
+
+#-- start of cpp_library -----------------
+
+ifneq (-MMD -MP -MF $*.d -MQ $@,)
+
+ifneq ($(MAKECMDGOALS),DTagToolclean)
+ifneq ($(MAKECMDGOALS),uninstall)
+-include $(bin)$(binobj)DTagTool.d
+
+$(bin)$(binobj)DTagTool.d :
+
+$(bin)$(binobj)DTagTool.o : $(cmt_final_setup_DTagTool)
+
+$(bin)$(binobj)DTagTool.o : $(src)DTagTool.cxx
+	$(cpp_echo) $(src)DTagTool.cxx
+	$(cpp_silent) $(cppcomp) -MMD -MP -MF $*.d -MQ $@ -o $@ $(use_pp_cppflags) $(DTagTool_pp_cppflags) $(lib_DTagTool_pp_cppflags) $(DTagTool_pp_cppflags) $(use_cppflags) $(DTagTool_cppflags) $(lib_DTagTool_cppflags) $(DTagTool_cppflags) $(DTagTool_cxx_cppflags)  $(src)DTagTool.cxx
+endif
+endif
+
+else
+$(bin)DTagTool_dependencies.make : $(DTagTool_cxx_dependencies)
+
+$(bin)DTagTool_dependencies.make : $(src)DTagTool.cxx
+
+$(bin)$(binobj)DTagTool.o : $(DTagTool_cxx_dependencies)
+	$(cpp_echo) $(src)DTagTool.cxx
+	$(cpp_silent) $(cppcomp) -o $@ $(use_pp_cppflags) $(DTagTool_pp_cppflags) $(lib_DTagTool_pp_cppflags) $(DTagTool_pp_cppflags) $(use_cppflags) $(DTagTool_cppflags) $(lib_DTagTool_cppflags) $(DTagTool_cppflags) $(DTagTool_cxx_cppflags)  $(src)DTagTool.cxx
+
+endif
+
+#-- end of cpp_library ------------------
+#-- start of cleanup_header --------------
+
+clean :: DTagToolclean ;
+#	@cd .
+
+ifndef PEDANTIC
+.DEFAULT::
+	$(echo) "(DTagTool.make) $@: No rule for such target" >&2
+else
+.DEFAULT::
+	$(error PEDANTIC: $@: No rule for such target)
+endif
+
+DTagToolclean ::
+#-- end of cleanup_header ---------------
+#-- start of cleanup_library -------------
+	$(cleanup_echo) library DTagTool
+	-$(cleanup_silent) cd $(bin); /bin/rm -f $(library_prefix)DTagTool$(library_suffix).a $(library_prefix)DTagTool$(library_suffix).s? DTagTool.stamp DTagTool.shstamp
+#-- end of cleanup_library ---------------

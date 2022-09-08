@@ -1,0 +1,8 @@
+2009-04-29  Wu Linghui <wulh@mail.ihep.ac.cn>
+	* modify subrec.txt and requirements
+
+2009-04-27  Li Xiurong <lixr@mail.ihep.ac.cn>
+	* remove  skimrec.txt 
+
+2009-04-28   Li Xiurong
+        * remove the cout words and the root output

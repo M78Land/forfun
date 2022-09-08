@@ -1,0 +1,23 @@
+package Gam4pikpAlg
+author Li Xiurong <lixr@ihep.ac.cn>
+
+use BesPolicy BesPolicy-*
+use GaudiInterface GaudiInterface-* External
+
+use McTruth      McTruth-*     Event
+use DstEvent DstEvent-* Event
+use EventModel   EventModel-*  Event
+use EvtRecEvent EvtRecEvent-* Event
+use HltEvent    HltEvent-*    Event
+
+use VertexFit    VertexFit-*   Analysis
+use ParticleID   ParticleID-*  Analysis
+use BesROOT      BesROOT-*     External
+
+#include_dirs "$(GAM4PIKPALGROOT)"
+
+apply_pattern component_library
+library Gam4pikpAlg  *.cxx  components/*.cxx
+
+apply_pattern declare_runtime files=*.txt
+

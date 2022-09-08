@@ -1,0 +1,16 @@
+ApplicationMgr.DLLs += {"BbEmcAlg"};
+ApplicationMgr.TopAlg += { "BbEmc" };
+
+//BbEmc.hist   = false;
+//BbEmc.Trigger= true;
+//BbEmc.Hlt    = true;
+//BbEmc.Estime = true;
+//BbEmc.KalTrk = true;
+//BbEmc.EneCut = 1.2;
+//BbEmc.MomCut = 0.04;
+//BbEmc.DangCut= 2.5;
+//BbEmc.Vr0Cut = 1.0;
+//BbEmc.Vz0cut = 5.0;
+
+RootWriter.AcceptAlgs += {"BbEmc"};
+NTupleSvc.Output = { "FILEBbEmc DATAFILE='BbEmc.root' OPT='NEW' TYP='ROOT'" };

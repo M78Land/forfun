@@ -1,0 +1,17 @@
+package McCor
+author Bian Jianming <bianjm@ihep.ac.cn>
+ 
+use BesPolicy BesPolicy-01-*
+use GaudiInterface GaudiInterface-01-* External
+use DstEvent     DstEvent-*    Event
+use EventModel   EventModel-*  Event
+use MdcRawEvent  MdcRawEvent-* Mdc
+use ParticleID   ParticleID-*  Analysis
+use VertexFit    VertexFit-*   Analysis
+use BesROOT      BesROOT-00-*     External
+use Identifier   Identifier-*  DetectorDescription
+use EmcRecEventModel EmcRecEventModel-* Emc
+ 
+apply_pattern component_library
+library McCor  *.cxx  components/*.cxx
+

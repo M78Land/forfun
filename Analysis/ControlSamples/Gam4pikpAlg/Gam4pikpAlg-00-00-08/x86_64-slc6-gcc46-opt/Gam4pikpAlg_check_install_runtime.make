@@ -1,0 +1,143 @@
+#-- start of make_header -----------------
+
+#====================================
+#  Document Gam4pikpAlg_check_install_runtime
+#
+#   Generated Thu Nov 11 08:11:44 2021  by bes3pub
+#
+#====================================
+
+include ${CMTROOT}/src/Makefile.core
+
+ifdef tag
+CMTEXTRATAGS = $(tag)
+else
+tag       = $(CMTCONFIG)
+endif
+
+cmt_Gam4pikpAlg_check_install_runtime_has_no_target_tag = 1
+
+#--------------------------------------------------------
+
+ifdef cmt_Gam4pikpAlg_check_install_runtime_has_target_tag
+
+tags      = $(tag),$(CMTEXTRATAGS),target_Gam4pikpAlg_check_install_runtime
+
+Gam4pikpAlg_tag = $(tag)
+
+#cmt_local_tagfile_Gam4pikpAlg_check_install_runtime = $(Gam4pikpAlg_tag)_Gam4pikpAlg_check_install_runtime.make
+cmt_local_tagfile_Gam4pikpAlg_check_install_runtime = $(bin)$(Gam4pikpAlg_tag)_Gam4pikpAlg_check_install_runtime.make
+
+else
+
+tags      = $(tag),$(CMTEXTRATAGS)
+
+Gam4pikpAlg_tag = $(tag)
+
+#cmt_local_tagfile_Gam4pikpAlg_check_install_runtime = $(Gam4pikpAlg_tag).make
+cmt_local_tagfile_Gam4pikpAlg_check_install_runtime = $(bin)$(Gam4pikpAlg_tag).make
+
+endif
+
+include $(cmt_local_tagfile_Gam4pikpAlg_check_install_runtime)
+#-include $(cmt_local_tagfile_Gam4pikpAlg_check_install_runtime)
+
+ifdef cmt_Gam4pikpAlg_check_install_runtime_has_target_tag
+
+cmt_final_setup_Gam4pikpAlg_check_install_runtime = $(bin)setup_Gam4pikpAlg_check_install_runtime.make
+cmt_dependencies_in_Gam4pikpAlg_check_install_runtime = $(bin)dependencies_Gam4pikpAlg_check_install_runtime.in
+#cmt_final_setup_Gam4pikpAlg_check_install_runtime = $(bin)Gam4pikpAlg_Gam4pikpAlg_check_install_runtimesetup.make
+cmt_local_Gam4pikpAlg_check_install_runtime_makefile = $(bin)Gam4pikpAlg_check_install_runtime.make
+
+else
+
+cmt_final_setup_Gam4pikpAlg_check_install_runtime = $(bin)setup.make
+cmt_dependencies_in_Gam4pikpAlg_check_install_runtime = $(bin)dependencies.in
+#cmt_final_setup_Gam4pikpAlg_check_install_runtime = $(bin)Gam4pikpAlgsetup.make
+cmt_local_Gam4pikpAlg_check_install_runtime_makefile = $(bin)Gam4pikpAlg_check_install_runtime.make
+
+endif
+
+#cmt_final_setup = $(bin)setup.make
+#cmt_final_setup = $(bin)Gam4pikpAlgsetup.make
+
+#Gam4pikpAlg_check_install_runtime :: ;
+
+dirs ::
+	@if test ! -r requirements ; then echo "No requirements file" ; fi; \
+	  if test ! -d $(bin) ; then $(mkdir) -p $(bin) ; fi
+
+javadirs ::
+	@if test ! -d $(javabin) ; then $(mkdir) -p $(javabin) ; fi
+
+srcdirs ::
+	@if test ! -d $(src) ; then $(mkdir) -p $(src) ; fi
+
+help ::
+	$(echo) 'Gam4pikpAlg_check_install_runtime'
+
+binobj = 
+ifdef STRUCTURED_OUTPUT
+binobj = Gam4pikpAlg_check_install_runtime/
+#Gam4pikpAlg_check_install_runtime::
+#	@if test ! -d $(bin)$(binobj) ; then $(mkdir) -p $(bin)$(binobj) ; fi
+#	$(echo) "STRUCTURED_OUTPUT="$(bin)$(binobj)
+endif
+
+${CMTROOT}/src/Makefile.core : ;
+ifdef use_requirements
+$(use_requirements) : ;
+endif
+
+#-- end of make_header ------------------
+#-- start of cmt_action_runner_header ---------------
+
+ifdef ONCE
+Gam4pikpAlg_check_install_runtime_once = 1
+endif
+
+ifdef Gam4pikpAlg_check_install_runtime_once
+
+Gam4pikpAlg_check_install_runtimeactionstamp = $(bin)Gam4pikpAlg_check_install_runtime.actionstamp
+#Gam4pikpAlg_check_install_runtimeactionstamp = Gam4pikpAlg_check_install_runtime.actionstamp
+
+Gam4pikpAlg_check_install_runtime :: $(Gam4pikpAlg_check_install_runtimeactionstamp)
+	$(echo) "Gam4pikpAlg_check_install_runtime ok"
+#	@echo Gam4pikpAlg_check_install_runtime ok
+
+#$(Gam4pikpAlg_check_install_runtimeactionstamp) :: $(Gam4pikpAlg_check_install_runtime_dependencies)
+$(Gam4pikpAlg_check_install_runtimeactionstamp) ::
+	$(silent) /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/BesPolicy/BesPolicy-01-05-05/cmt/bes_check_installations.sh -files= -s=../share *.txt   -installdir=/cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/InstallArea/share
+	$(silent) cat /dev/null > $(Gam4pikpAlg_check_install_runtimeactionstamp)
+#	@echo ok > $(Gam4pikpAlg_check_install_runtimeactionstamp)
+
+Gam4pikpAlg_check_install_runtimeclean ::
+	$(cleanup_silent) /bin/rm -f $(Gam4pikpAlg_check_install_runtimeactionstamp)
+
+else
+
+#Gam4pikpAlg_check_install_runtime :: $(Gam4pikpAlg_check_install_runtime_dependencies)
+Gam4pikpAlg_check_install_runtime ::
+	$(silent) /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/BesPolicy/BesPolicy-01-05-05/cmt/bes_check_installations.sh -files= -s=../share *.txt   -installdir=/cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/InstallArea/share
+
+endif
+
+install ::
+uninstall ::
+
+#-- end of cmt_action_runner_header -----------------
+#-- start of cleanup_header --------------
+
+clean :: Gam4pikpAlg_check_install_runtimeclean ;
+#	@cd .
+
+ifndef PEDANTIC
+.DEFAULT::
+	$(echo) "(Gam4pikpAlg_check_install_runtime.make) $@: No rule for such target" >&2
+else
+.DEFAULT::
+	$(error PEDANTIC: $@: No rule for such target)
+endif
+
+Gam4pikpAlg_check_install_runtimeclean ::
+#-- end of cleanup_header ---------------

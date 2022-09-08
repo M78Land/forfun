@@ -1,0 +1,35 @@
+#include "$ROOTIOROOT/share/jobOptions_ReadRec.txt"
+#include "$MAGNETICFIELDROOT/share/MagneticField.txt" 
+#include "$VERTEXFITROOT/share/jobOptions_VertexDbSvc.txt"
+#include "$GAM4PIKPALGROOT/share/jobOptions_Gam4pikp.txt"
+#include "$GAM4PIKPALGROOT/share/subrec.txt"
+Gam4pikp.skim4pi=true;
+Gam4pikp.skim4k=true;
+Gam4pikp.skim2pi2pr=true;
+Gam4pikp.rootput=false;
+
+MagneticFieldSvc.RunMode=3;
+
+// Input REC or DST file name 
+EventCnvSvc.digiRootInputFile = { 
+"/besfs/offline/data/cal/643/rec/090311/run_0008256_All_file001_SFO-1.rec",
+"/besfs/offline/data/cal/643/rec/090311/run_0008256_All_file002_SFO-1.rec",
+"/besfs/offline/data/cal/643/rec/090311/run_0008256_All_file004_SFO-1.rec",
+"/besfs/offline/data/cal/643/rec/090311/run_0008256_All_file005_SFO-1.rec"
+};
+
+// Set output level threshold (2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL )
+MessageSvc.OutputLevel = 6;
+
+// Number of events to be processed (default is 10)
+ApplicationMgr.EvtMax = 1000;
+
+
+Selectgam4pi.digiRootOutputFile = "pion101.rec";
+
+Selectgam4k.digiRootOutputFile = "kaon101.rec";
+
+Selectgam2pi2pr.digiRootOutputFile = "proton101.rec";
+
+//ApplicationMgr.HistogramPersistency = "ROOT";
+//NTupleSvc.Output = { "FILE1 DATAFILE='chic101.root' OPT='NEW' TYP='ROOT'"};

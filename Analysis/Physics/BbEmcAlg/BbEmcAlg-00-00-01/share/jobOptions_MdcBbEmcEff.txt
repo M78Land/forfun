@@ -1,0 +1,17 @@
+//############################################################## -*-C++-*-
+//
+// Boss job options file for MdcBbEmcEff
+//
+//==============================================================
+ApplicationMgr.DLLs += {"BbEmcAlg"};
+ApplicationMgr.TopAlg += { "MdcBbEmcEff"};
+
+ApplicationMgr.ExtSvc += { "NTupleSvc" };
+
+//NTupleSvc.Output = { "FILE_MdcBbEmcEff DATAFILE='MdcBbEmc.root' OPT='NEW' TYP='ROOT'" };
+//==============================================================
+//
+// End of job options file
+//
+//##############################################################
+

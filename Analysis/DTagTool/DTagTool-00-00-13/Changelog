@@ -1,0 +1,48 @@
+2020-03-01  Pei-Rong Li <prli@lzu.edu.cn>
+   * Fix the minor bug on isGoodShower() where no fabs(costh)<0.92 requirement for endcap.
+   * Add isGoodShower(EvtRecTrack* trk, double shwDang) if user want to require angle with charged tracks.
+
+2013-12-12  Chunlei Liu <chl56@cmu.edu>
+   *  add an extra cut in cosmicandleptonvecto() function for 2-track DTag mode.
+this cut veto events that doesn't have an extra good shower.
+
+2013-04-12  Chunlei Liu <chl56@cmu.edu>
+   * add functions to get eta id and momentum
+   * add new options for double tag
+
+2012-04-17  Chunlei Liu <chl56@cmu.edu>
+   * set pi0p4 to be be constrained four momentum by default
+   * cosmicandleptonveto now uses e/p in electron id
+
+2011-12-14  Chunlei Liu <chl56@cmu.edu>
+   * require good track to have valid kalman tack to avoid crash
+
+2011-10-10  Chunlei Liu <chl56@cmu.edu>
+   * update cosmic and lepton veto, use simplepidsvc for electron id
+   * add p4 calculation for shower and pi0
+   * require both tags from same D when using findDTag
+   * add option to find best double tag using invarintmass
+   * add function to get full list of double tags	
+
+2010-10-10  Chunlei Liu <chl56@cmu.edu>
+   * add p4 calculation	 
+   * change default pid requirement to be true
+   * add function to get kaon and pion pointers in a tag
+	
+2010-10-10  Chunlei Liu <chl56@cmu.edu>
+   * minor bugs fixed. (good shower time window and mode 200 not signed correct charm for double tagging)
+	
+2010-08-12  Chunlei Liu <chl56@cmu.edu>
+   * Add integer arguments (mode number) for findSTag and findDTag
+   * add setPID(bool) to cut on PID before select  tags
+
+
+2010-05-16  Chunlei Liu <chl56@cmu.edu>
+   * Add muon veto using muon detector in cosmicandleptonVeto() function
+   * modify findDTag(mode1,charm1,mode2,charm2) so that it will ignore charge/charm conjucation
+2010-05-03  Chunlei Liu <chl56@cmu.edu>
+   * Add goodtrack and goodshower function
+   * Add cosmic and lepton veto function
+   * update double tagging algorithm
+
+

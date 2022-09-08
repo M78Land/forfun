@@ -1,0 +1,23 @@
+ApplicationMgr.DLLs += { "EmcRecGeoSvc" };
+ApplicationMgr.ExtSvc += { "EmcRecGeoSvc" };
+
+ApplicationMgr.DLLs += {"AbsCor","EmcShEnCalibSvc"};
+ApplicationMgr.TopAlg += {"AbsCor"};
+ApplicationMgr.ExtSvc += { "EmcShEnCalibSvc" };
+
+AbsCor.NTupleOut = false;
+AbsCor.UseTof = 1;
+AbsCor.DoDataCor = 1;
+
+AbsCor.MCUseTof = 1;
+AbsCor.DoPi0Cor = 1;  //1: do pi0 correction for data and only correct the difference between data and MC
+
+AbsCor.MCCorUseFunction = 1; //1: use correction function method 0: use the interpolation method
+AbsCor.IYear = 2009;
+AbsCor.HotCellMask = 0; // (1=on, 0=off: switch to turn on hot crystal suppression)
+
+
+//ApplicationMgr.DLLs += { "RootHistCnv" };
+//ApplicationMgr.DLLs += { "NTuples" };
+
+

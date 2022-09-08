@@ -1,0 +1,342 @@
+#-- start of make_header -----------------
+
+#====================================
+#  Library BbEmcAlg
+#
+#   Generated Thu Nov 11 08:11:33 2021  by bes3pub
+#
+#====================================
+
+include ${CMTROOT}/src/Makefile.core
+
+ifdef tag
+CMTEXTRATAGS = $(tag)
+else
+tag       = $(CMTCONFIG)
+endif
+
+cmt_BbEmcAlg_has_no_target_tag = 1
+
+#--------------------------------------------------------
+
+ifdef cmt_BbEmcAlg_has_target_tag
+
+tags      = $(tag),$(CMTEXTRATAGS),target_BbEmcAlg
+
+BbEmcAlg_tag = $(tag)
+
+#cmt_local_tagfile_BbEmcAlg = $(BbEmcAlg_tag)_BbEmcAlg.make
+cmt_local_tagfile_BbEmcAlg = $(bin)$(BbEmcAlg_tag)_BbEmcAlg.make
+
+else
+
+tags      = $(tag),$(CMTEXTRATAGS)
+
+BbEmcAlg_tag = $(tag)
+
+#cmt_local_tagfile_BbEmcAlg = $(BbEmcAlg_tag).make
+cmt_local_tagfile_BbEmcAlg = $(bin)$(BbEmcAlg_tag).make
+
+endif
+
+include $(cmt_local_tagfile_BbEmcAlg)
+#-include $(cmt_local_tagfile_BbEmcAlg)
+
+ifdef cmt_BbEmcAlg_has_target_tag
+
+cmt_final_setup_BbEmcAlg = $(bin)setup_BbEmcAlg.make
+cmt_dependencies_in_BbEmcAlg = $(bin)dependencies_BbEmcAlg.in
+#cmt_final_setup_BbEmcAlg = $(bin)BbEmcAlg_BbEmcAlgsetup.make
+cmt_local_BbEmcAlg_makefile = $(bin)BbEmcAlg.make
+
+else
+
+cmt_final_setup_BbEmcAlg = $(bin)setup.make
+cmt_dependencies_in_BbEmcAlg = $(bin)dependencies.in
+#cmt_final_setup_BbEmcAlg = $(bin)BbEmcAlgsetup.make
+cmt_local_BbEmcAlg_makefile = $(bin)BbEmcAlg.make
+
+endif
+
+#cmt_final_setup = $(bin)setup.make
+#cmt_final_setup = $(bin)BbEmcAlgsetup.make
+
+#BbEmcAlg :: ;
+
+dirs ::
+	@if test ! -r requirements ; then echo "No requirements file" ; fi; \
+	  if test ! -d $(bin) ; then $(mkdir) -p $(bin) ; fi
+
+javadirs ::
+	@if test ! -d $(javabin) ; then $(mkdir) -p $(javabin) ; fi
+
+srcdirs ::
+	@if test ! -d $(src) ; then $(mkdir) -p $(src) ; fi
+
+help ::
+	$(echo) 'BbEmcAlg'
+
+binobj = 
+ifdef STRUCTURED_OUTPUT
+binobj = BbEmcAlg/
+#BbEmcAlg::
+#	@if test ! -d $(bin)$(binobj) ; then $(mkdir) -p $(bin)$(binobj) ; fi
+#	$(echo) "STRUCTURED_OUTPUT="$(bin)$(binobj)
+endif
+
+${CMTROOT}/src/Makefile.core : ;
+ifdef use_requirements
+$(use_requirements) : ;
+endif
+
+#-- end of make_header ------------------
+#-- start of libary_header ---------------
+
+BbEmcAlglibname   = $(bin)$(library_prefix)BbEmcAlg$(library_suffix)
+BbEmcAlglib       = $(BbEmcAlglibname).a
+BbEmcAlgstamp     = $(bin)BbEmcAlg.stamp
+BbEmcAlgshstamp   = $(bin)BbEmcAlg.shstamp
+
+BbEmcAlg :: dirs  BbEmcAlgLIB
+	$(echo) "BbEmcAlg ok"
+
+#-- end of libary_header ----------------
+
+BbEmcAlgLIB :: $(BbEmcAlglib) $(BbEmcAlgshstamp)
+	@/bin/echo "------> BbEmcAlg : library ok"
+
+$(BbEmcAlglib) :: $(bin)BbEmc.o $(bin)MdcBbEmcEff.o $(bin)BbEmc_load.o $(bin)BbEmc_entries.o
+	$(lib_echo) library
+	$(lib_silent) cd $(bin); \
+	  $(ar) $(BbEmcAlglib) $?
+	$(lib_silent) $(ranlib) $(BbEmcAlglib)
+	$(lib_silent) cat /dev/null >$(BbEmcAlgstamp)
+
+#------------------------------------------------------------------
+#  Future improvement? to empty the object files after
+#  storing in the library
+#
+##	  for f in $?; do \
+##	    rm $${f}; touch $${f}; \
+##	  done
+#------------------------------------------------------------------
+
+$(BbEmcAlglibname).$(shlibsuffix) :: $(BbEmcAlglib) $(BbEmcAlgstamps)
+	$(lib_silent) cd $(bin); QUIET=$(QUIET); $(make_shlib) "$(tags)" BbEmcAlg $(BbEmcAlg_shlibflags)
+
+$(BbEmcAlgshstamp) :: $(BbEmcAlglibname).$(shlibsuffix)
+	@if test -f $(BbEmcAlglibname).$(shlibsuffix) ; then cat /dev/null >$(BbEmcAlgshstamp) ; fi
+
+BbEmcAlgclean ::
+	$(cleanup_echo) objects
+	$(cleanup_silent) cd $(bin); /bin/rm -f $(bin)BbEmc.o $(bin)MdcBbEmcEff.o $(bin)BbEmc_load.o $(bin)BbEmc_entries.o
+
+#-----------------------------------------------------------------
+#
+#  New section for automatic installation
+#
+#-----------------------------------------------------------------
+
+ifeq ($(INSTALLAREA),)
+installarea = $(CMTINSTALLAREA)
+else
+ifeq ($(findstring `,$(INSTALLAREA)),`)
+installarea = $(shell $(subst `,, $(INSTALLAREA)))
+else
+installarea = $(INSTALLAREA)
+endif
+endif
+
+install_dir = ${installarea}/${CMTCONFIG}/lib
+BbEmcAlginstallname = $(library_prefix)BbEmcAlg$(library_suffix).$(shlibsuffix)
+
+BbEmcAlg :: BbEmcAlginstall
+
+install :: BbEmcAlginstall
+
+BbEmcAlginstall :: $(install_dir)/$(BbEmcAlginstallname)
+	@if test ! "${installarea}" = ""; then\
+	  echo "installation done"; \
+	fi
+
+$(install_dir)/$(BbEmcAlginstallname) :: $(bin)$(BbEmcAlginstallname)
+	@if test ! "${installarea}" = ""; then \
+	  cd $(bin); \
+	  if test ! "$(install_dir)" = ""; then \
+	    if test ! -d "$(install_dir)"; then \
+	      mkdir -p $(install_dir); \
+	    fi ; \
+	    if test -d "$(install_dir)"; then \
+	      echo "Installing library $(BbEmcAlginstallname) into $(install_dir)"; \
+	      if test -e $(install_dir)/$(BbEmcAlginstallname); then \
+	        $(cmt_uninstall_area_command) $(install_dir)/$(BbEmcAlginstallname); \
+	        $(cmt_uninstall_area_command) $(install_dir)/$(BbEmcAlginstallname).cmtref; \
+	      fi; \
+	      $(cmt_install_area_command) `pwd`/$(BbEmcAlginstallname) $(install_dir)/$(BbEmcAlginstallname); \
+	      echo `pwd`/$(BbEmcAlginstallname) >$(install_dir)/$(BbEmcAlginstallname).cmtref; \
+	    fi \
+          else \
+	    echo "Cannot install library $(BbEmcAlginstallname), no installation directory specified"; \
+	  fi; \
+	fi
+
+BbEmcAlgclean :: BbEmcAlguninstall
+
+uninstall :: BbEmcAlguninstall
+
+BbEmcAlguninstall ::
+	@if test ! "${installarea}" = ""; then \
+	  cd $(bin); \
+	  if test ! "$(install_dir)" = ""; then \
+	    if test -d "$(install_dir)"; then \
+	      echo "Removing installed library $(BbEmcAlginstallname) from $(install_dir)"; \
+	      $(cmt_uninstall_area_command) $(install_dir)/$(BbEmcAlginstallname); \
+	      $(cmt_uninstall_area_command) $(install_dir)/$(BbEmcAlginstallname).cmtref; \
+	    fi \
+          else \
+	    echo "Cannot uninstall library $(BbEmcAlginstallname), no installation directory specified"; \
+	  fi; \
+	fi
+
+
+
+
+#-- start of cpp_library -----------------
+
+ifneq (-MMD -MP -MF $*.d -MQ $@,)
+
+ifneq ($(MAKECMDGOALS),BbEmcAlgclean)
+ifneq ($(MAKECMDGOALS),uninstall)
+-include $(bin)$(binobj)BbEmc.d
+
+$(bin)$(binobj)BbEmc.d :
+
+$(bin)$(binobj)BbEmc.o : $(cmt_final_setup_BbEmcAlg)
+
+$(bin)$(binobj)BbEmc.o : $(src)BbEmc.cxx
+	$(cpp_echo) $(src)BbEmc.cxx
+	$(cpp_silent) $(cppcomp) -MMD -MP -MF $*.d -MQ $@ -o $@ $(use_pp_cppflags) $(BbEmcAlg_pp_cppflags) $(lib_BbEmcAlg_pp_cppflags) $(BbEmc_pp_cppflags) $(use_cppflags) $(BbEmcAlg_cppflags) $(lib_BbEmcAlg_cppflags) $(BbEmc_cppflags) $(BbEmc_cxx_cppflags)  $(src)BbEmc.cxx
+endif
+endif
+
+else
+$(bin)BbEmcAlg_dependencies.make : $(BbEmc_cxx_dependencies)
+
+$(bin)BbEmcAlg_dependencies.make : $(src)BbEmc.cxx
+
+$(bin)$(binobj)BbEmc.o : $(BbEmc_cxx_dependencies)
+	$(cpp_echo) $(src)BbEmc.cxx
+	$(cpp_silent) $(cppcomp) -o $@ $(use_pp_cppflags) $(BbEmcAlg_pp_cppflags) $(lib_BbEmcAlg_pp_cppflags) $(BbEmc_pp_cppflags) $(use_cppflags) $(BbEmcAlg_cppflags) $(lib_BbEmcAlg_cppflags) $(BbEmc_cppflags) $(BbEmc_cxx_cppflags)  $(src)BbEmc.cxx
+
+endif
+
+#-- end of cpp_library ------------------
+#-- start of cpp_library -----------------
+
+ifneq (-MMD -MP -MF $*.d -MQ $@,)
+
+ifneq ($(MAKECMDGOALS),BbEmcAlgclean)
+ifneq ($(MAKECMDGOALS),uninstall)
+-include $(bin)$(binobj)MdcBbEmcEff.d
+
+$(bin)$(binobj)MdcBbEmcEff.d :
+
+$(bin)$(binobj)MdcBbEmcEff.o : $(cmt_final_setup_BbEmcAlg)
+
+$(bin)$(binobj)MdcBbEmcEff.o : $(src)MdcBbEmcEff.cxx
+	$(cpp_echo) $(src)MdcBbEmcEff.cxx
+	$(cpp_silent) $(cppcomp) -MMD -MP -MF $*.d -MQ $@ -o $@ $(use_pp_cppflags) $(BbEmcAlg_pp_cppflags) $(lib_BbEmcAlg_pp_cppflags) $(MdcBbEmcEff_pp_cppflags) $(use_cppflags) $(BbEmcAlg_cppflags) $(lib_BbEmcAlg_cppflags) $(MdcBbEmcEff_cppflags) $(MdcBbEmcEff_cxx_cppflags)  $(src)MdcBbEmcEff.cxx
+endif
+endif
+
+else
+$(bin)BbEmcAlg_dependencies.make : $(MdcBbEmcEff_cxx_dependencies)
+
+$(bin)BbEmcAlg_dependencies.make : $(src)MdcBbEmcEff.cxx
+
+$(bin)$(binobj)MdcBbEmcEff.o : $(MdcBbEmcEff_cxx_dependencies)
+	$(cpp_echo) $(src)MdcBbEmcEff.cxx
+	$(cpp_silent) $(cppcomp) -o $@ $(use_pp_cppflags) $(BbEmcAlg_pp_cppflags) $(lib_BbEmcAlg_pp_cppflags) $(MdcBbEmcEff_pp_cppflags) $(use_cppflags) $(BbEmcAlg_cppflags) $(lib_BbEmcAlg_cppflags) $(MdcBbEmcEff_cppflags) $(MdcBbEmcEff_cxx_cppflags)  $(src)MdcBbEmcEff.cxx
+
+endif
+
+#-- end of cpp_library ------------------
+#-- start of cpp_library -----------------
+
+ifneq (-MMD -MP -MF $*.d -MQ $@,)
+
+ifneq ($(MAKECMDGOALS),BbEmcAlgclean)
+ifneq ($(MAKECMDGOALS),uninstall)
+-include $(bin)$(binobj)BbEmc_load.d
+
+$(bin)$(binobj)BbEmc_load.d :
+
+$(bin)$(binobj)BbEmc_load.o : $(cmt_final_setup_BbEmcAlg)
+
+$(bin)$(binobj)BbEmc_load.o : $(src)components/BbEmc_load.cxx
+	$(cpp_echo) $(src)components/BbEmc_load.cxx
+	$(cpp_silent) $(cppcomp) -MMD -MP -MF $*.d -MQ $@ -o $@ $(use_pp_cppflags) $(BbEmcAlg_pp_cppflags) $(lib_BbEmcAlg_pp_cppflags) $(BbEmc_load_pp_cppflags) $(use_cppflags) $(BbEmcAlg_cppflags) $(lib_BbEmcAlg_cppflags) $(BbEmc_load_cppflags) $(BbEmc_load_cxx_cppflags) -I../src/components $(src)components/BbEmc_load.cxx
+endif
+endif
+
+else
+$(bin)BbEmcAlg_dependencies.make : $(BbEmc_load_cxx_dependencies)
+
+$(bin)BbEmcAlg_dependencies.make : $(src)components/BbEmc_load.cxx
+
+$(bin)$(binobj)BbEmc_load.o : $(BbEmc_load_cxx_dependencies)
+	$(cpp_echo) $(src)components/BbEmc_load.cxx
+	$(cpp_silent) $(cppcomp) -o $@ $(use_pp_cppflags) $(BbEmcAlg_pp_cppflags) $(lib_BbEmcAlg_pp_cppflags) $(BbEmc_load_pp_cppflags) $(use_cppflags) $(BbEmcAlg_cppflags) $(lib_BbEmcAlg_cppflags) $(BbEmc_load_cppflags) $(BbEmc_load_cxx_cppflags) -I../src/components $(src)components/BbEmc_load.cxx
+
+endif
+
+#-- end of cpp_library ------------------
+#-- start of cpp_library -----------------
+
+ifneq (-MMD -MP -MF $*.d -MQ $@,)
+
+ifneq ($(MAKECMDGOALS),BbEmcAlgclean)
+ifneq ($(MAKECMDGOALS),uninstall)
+-include $(bin)$(binobj)BbEmc_entries.d
+
+$(bin)$(binobj)BbEmc_entries.d :
+
+$(bin)$(binobj)BbEmc_entries.o : $(cmt_final_setup_BbEmcAlg)
+
+$(bin)$(binobj)BbEmc_entries.o : $(src)components/BbEmc_entries.cxx
+	$(cpp_echo) $(src)components/BbEmc_entries.cxx
+	$(cpp_silent) $(cppcomp) -MMD -MP -MF $*.d -MQ $@ -o $@ $(use_pp_cppflags) $(BbEmcAlg_pp_cppflags) $(lib_BbEmcAlg_pp_cppflags) $(BbEmc_entries_pp_cppflags) $(use_cppflags) $(BbEmcAlg_cppflags) $(lib_BbEmcAlg_cppflags) $(BbEmc_entries_cppflags) $(BbEmc_entries_cxx_cppflags) -I../src/components $(src)components/BbEmc_entries.cxx
+endif
+endif
+
+else
+$(bin)BbEmcAlg_dependencies.make : $(BbEmc_entries_cxx_dependencies)
+
+$(bin)BbEmcAlg_dependencies.make : $(src)components/BbEmc_entries.cxx
+
+$(bin)$(binobj)BbEmc_entries.o : $(BbEmc_entries_cxx_dependencies)
+	$(cpp_echo) $(src)components/BbEmc_entries.cxx
+	$(cpp_silent) $(cppcomp) -o $@ $(use_pp_cppflags) $(BbEmcAlg_pp_cppflags) $(lib_BbEmcAlg_pp_cppflags) $(BbEmc_entries_pp_cppflags) $(use_cppflags) $(BbEmcAlg_cppflags) $(lib_BbEmcAlg_cppflags) $(BbEmc_entries_cppflags) $(BbEmc_entries_cxx_cppflags) -I../src/components $(src)components/BbEmc_entries.cxx
+
+endif
+
+#-- end of cpp_library ------------------
+#-- start of cleanup_header --------------
+
+clean :: BbEmcAlgclean ;
+#	@cd .
+
+ifndef PEDANTIC
+.DEFAULT::
+	$(echo) "(BbEmcAlg.make) $@: No rule for such target" >&2
+else
+.DEFAULT::
+	$(error PEDANTIC: $@: No rule for such target)
+endif
+
+BbEmcAlgclean ::
+#-- end of cleanup_header ---------------
+#-- start of cleanup_library -------------
+	$(cleanup_echo) library BbEmcAlg
+	-$(cleanup_silent) cd $(bin); /bin/rm -f $(library_prefix)BbEmcAlg$(library_suffix).a $(library_prefix)BbEmcAlg$(library_suffix).s? BbEmcAlg.stamp BbEmcAlg.shstamp
+#-- end of cleanup_library ---------------

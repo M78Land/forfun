@@ -1,0 +1,19 @@
+ApplicationMgr.DLLs += {"Gam4pikpAlg"};
+ApplicationMgr.TopAlg += { "Gam4pikp" };
+
+Gam4pikp.Vr0cut = 1.0;
+Gam4pikp.Vz0cut = 5.0;
+
+Gam4pikp.EnergyThreshold = 0.05;
+Gam4pikp.GammaPhiCut = 20.0;
+Gam4pikp.GammaThetaCut = 20.0;
+Gam4pikp.GammaDangCut = 20.0;
+
+Gam4pikp.skim4pi=false;
+Gam4pikp.skim4k=false;
+Gam4pikp.skim2pi2pr=false;
+Gam4pikp.rootput=false;
+//Gam4pikp.Test4C = 1;
+//Gam4pikp.Test5C = 1;
+//Gam4pikp.CheckDedx = 1;				
+//Gam4pikp.CheckTof = 1;

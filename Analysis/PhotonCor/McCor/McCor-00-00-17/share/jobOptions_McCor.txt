@@ -1,0 +1,40 @@
+ApplicationMgr.DLLs += {"McCor"};
+ApplicationMgr.TopAlg += {"McCor"};
+
+McCor.NTupleOut = false;
+/*
+//McCor.a0=1.043;
+//McCor.a1=-0.05371;
+//McCor.a2=0.1385;
+//McCor.a3=-0.08112;
+//McCor.b0=0.9976;
+//McCor.b1=-0.001718;
+//McCor.b2=0.01634;
+*/
+/*
+//McCor.a0=0.9866;
+//McCor.a1=-0.04748;
+//McCor.a2=0.029508;
+//McCor.a3=-0.007133;
+//McCor.b0=0.9976;
+//McCor.b1=-0.001718;
+//McCor.b2=0.01634;
+*/
+
+//-----6.1.0-----radee calib
+//McCor.a0=0.92271;
+//McCor.a1=0.0967707;
+//McCor.a2=-0.137923;
+//McCor.a3=0.0609146;
+//McCor.b0=1.01207;
+//McCor.b1=-0.00212806;
+//McCor.b2=-0.0381472;
+
+//----6.1.0----pi0 calib
+//McCor.a0=0.977423;
+//McCor.a1=-0.136999;
+//McCor.a2=0.178634;
+//McCor.a3=-0.0768325;
+//McCor.b0=1.01207;
+//McCor.b1=-0.00212806;
+//McCor.b2=-0.0381472;

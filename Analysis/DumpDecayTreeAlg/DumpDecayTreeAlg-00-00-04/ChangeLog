@@ -1,0 +1,7 @@
+2009-04-21 ZWEBER Peter <petez@physics.umn.edu>
+  * Added gammaFSR to map
+	
+2009-04-08 ZWEBER Peter <petez@physics.umn.edu>
+  * Added ChangeLog for version 00-00-03
+  * After first import of package, added option 
+    to dump decay tree for only one run and event. 

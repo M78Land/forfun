@@ -1,0 +1,6 @@
+ApplicationMgr.DLLs += { "DumpDecayTreeAlg" };
+ApplicationMgr.TopAlg += { "DumpDecayTreeAlg" };
+
+DumpDecayTreeAlg.Frequency = 1;
+DumpDecayTreeAlg.BesEvtGenOnly = true;
+DumpDecayTreeAlg.PrintParticles = true;

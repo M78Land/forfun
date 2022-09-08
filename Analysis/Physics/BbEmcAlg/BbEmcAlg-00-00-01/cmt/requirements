@@ -1,0 +1,22 @@
+package BbEmcAlg
+author Zhu Kai
+
+use BesPolicy BesPolicy-01-*
+use GaudiInterface GaudiInterface-01-* External
+use DstEvent	 DstEvent-*    Event
+use EventModel   EventModel-*  Event 
+use MdcRawEvent  MdcRawEvent-* Mdc
+use ParticleID   ParticleID-*  Analysis	
+use VertexFit    VertexFit-*   Analysis	
+use BesROOT      BesROOT-00-*  External
+
+use DstEvent	 DstEvent-*    Event
+use TrigEvent    TrigEvent-*   Event
+use McTruth      McTruth-*     Event
+
+use EvTimeEvent  EvTimeEvent-* Event
+use HltEvent     HltEvent-*    Event
+
+use RootHistCnv  v*
+apply_pattern component_library
+library BbEmcAlg  *.cxx  components/*.cxx

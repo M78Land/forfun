@@ -1,0 +1,21 @@
+#include "$ROOTIOROOT/share/jobOptions_ReadRec.txt"
+
+ApplicationMgr.DLLs += {"DumpDecayTreeAlg"};
+ApplicationMgr.TopAlg += { "DumpDecayTreeAlg" };
+DumpDecayTreeAlg.BesEvtGenOnly = true;
+DumpDecayTreeAlg.PrintParticles = true;
+
+DumpDecayTreeAlg.Frequency = 1;
+
+DumpDecayTreeAlg.FindRunEvent = false;
+DumpDecayTreeAlg.FindRun = -5040;
+DumpDecayTreeAlg.FindEvent = 3;
+
+//// Input REC or DST file name 
+EventCnvSvc.digiRootInputFile = { "rhopi_n10.dst" };
+
+//// Set output level threshold (2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL )
+MessageSvc.OutputLevel = 5;
+
+//// Number of events to be processed (default is 10)
+ApplicationMgr.EvtMax = 10;

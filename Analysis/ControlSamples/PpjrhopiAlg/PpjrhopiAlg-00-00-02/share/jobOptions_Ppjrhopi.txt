@@ -1,0 +1,18 @@
+ApplicationMgr.DLLs += {"PpjrhopiAlg"};
+ApplicationMgr.TopAlg += { "Ppjrhopi" };
+
+Ppjrhopi.Vr0cut = 5.0;
+Ppjrhopi.Vz0cut = 20.0;
+Ppjrhopi.Vr1cut = 1.0;
+Ppjrhopi.Vz1cut = 5.0;
+Ppjrhopi.Vctcut = 0.93;
+
+Ppjrhopi.EnergyThreshold = 0.04;
+Ppjrhopi.GammaAngCut =20.0;
+//Ppjrhopi.GammaPhiCut = 20.0;
+//Ppjrhopi.GammaThetaCut = 20.0;
+
+Ppjrhopi.Test4C = 1;
+Ppjrhopi.Test5C = 1;
+Ppjrhopi.CheckDedx = 1;				
+Ppjrhopi.CheckTof = 1;

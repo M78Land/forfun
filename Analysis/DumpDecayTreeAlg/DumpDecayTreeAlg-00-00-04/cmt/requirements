@@ -1,0 +1,16 @@
+package DumpDecayTreeAlg
+
+author ZWEBER Peter <petez@physics.umn.edu>
+
+use BesPolicy BesPolicy-*
+use GaudiInterface GaudiInterface-*  External
+
+use EventModel   EventModel-*	Event
+use EvtRecEvent  EvtRecEvent-*  Event
+
+use McTruth      McTruth-*     	Event
+
+apply_pattern component_library
+library DumpDecayTreeAlg  *.cxx  components/*.cxx
+
+#apply_pattern declare_runtime files=*.txt
