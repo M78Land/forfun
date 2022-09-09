@@ -1,4 +1,7 @@
 #Set the environment
+
+docker container exec boss make
+
 docker container exec boss /bin/bash -c 'echo "cd /home/cmthome" | sudo tee /home/remake.sh'
 docker container exec boss /bin/bash -c 'echo "source setupCMT.sh" | sudo tee -a /home/remake.sh'
 docker container exec boss /bin/bash -c 'echo "cmt config && source setup.sh" | sudo tee  -a /home/remake.sh'
