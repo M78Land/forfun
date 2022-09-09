@@ -14,6 +14,7 @@ docker container exec boss /bin/bash -c 'cp -r /cvmfs/bes3.ihep.ac.cn/bes3sw/Bos
 
 #modify the cxx
 docker container exec boss /bin/bash -c "sed -i '939a cout<<\\\"It is a vital success for jiangdi\\\"<<endl;' /home/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23/src/Rhopi.cxx"
+docker container exec boss /bin/bash -c 'cat /home/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23/src/Rhopi.cxx'
 
 docker container exec boss /bin/bash -c 'echo "cd /home/workarea/Analysis/Physics/RhopiAlg/RhopiAlg-00-00-23/cmt" | sudo tee -a /home/remake.sh'
 docker container exec boss /bin/bash -c 'echo "cmt config" | sudo tee -a /home/remake.sh'
