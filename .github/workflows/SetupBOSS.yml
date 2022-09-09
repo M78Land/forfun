@@ -20,5 +20,4 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - run: source setup708.sh
-      - run: ls -a
       - run: source remake.sh
