@@ -7,7 +7,7 @@ docker container exec boss /bin/bash -c 'echo "cmt broadcast cmt config" | sudo 
 docker container exec boss /bin/bash -c 'echo "source setup.sh" | sudo tee -a /home/remake.sh'
 
 #Copy the package modified by you to the workarea inside the docker
-docker cp /Analysis boss:/home/workarea/
+docker cp ./Analysis boss:/home/workarea/
 
 #Copy the dictionary need to be written to the workarea
 docker container exec boss /bin/bash -c 'cp -r /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/InstallArea /home/workarea'
