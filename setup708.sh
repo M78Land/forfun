@@ -4,6 +4,8 @@ docker image pull barbohrben/boss:complete
 #run the image in the background, named boss. And the parameter, --privileged, is necessary for mount cvmfs. The command, sleep 1d, makes it keeping running for one day in the background
 docker container run -d --name boss --privileged barbohrben/boss:complete sleep 1d
 
+docker container exec boss make
+
 #Mount necessary dictionaries inside the container that we run above
 docker container exec boss mount -t cvmfs sft.cern.ch /cvmfs/sft.cern.ch
 docker container exec boss mount -t cvmfs container.ihep.ac.cn /cvmfs/container.ihep.ac.cn
