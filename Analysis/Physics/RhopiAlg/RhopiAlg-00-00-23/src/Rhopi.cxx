@@ -937,6 +937,7 @@ StatusCode Rhopi::finalize() {
   cout<<"Pass 4C:              "<<Ncut4<<endl;
   cout<<"Pass 5C:              "<<Ncut5<<endl;
   cout<<"J/psi->rho0 pi0:      "<<Ncut6<<endl;
+  cout<<"It' s another success."<<endl;
   MsgStream log(msgSvc(), name());
   log << MSG::INFO << "in finalize()" << endmsg;
   return StatusCode::SUCCESS;
